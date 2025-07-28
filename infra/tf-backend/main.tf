@@ -12,12 +12,12 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "tf_backend_rg" {
-  name     = "desa0152-githubactions-rg"
+  name     = "kare0041-githubactions-rg"
   location = "Canada Central"
 }
 
 resource "azurerm_storage_account" "tf_backend_sa" {
-  name                     = "desa0152githubactions"
+  name                     = "kare0041githubactions"
   resource_group_name      = azurerm_resource_group.tf_backend_rg.name
   location                 = azurerm_resource_group.tf_backend_rg.location
   account_tier             = "Standard"
