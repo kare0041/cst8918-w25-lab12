@@ -53,7 +53,7 @@ jobs:
         id: tf-plan
         run: |
           export exitcode=0
-          terraform plan -detailed-exitcode -no-color -out tfplan || export exitcode=$?
+          terraform plan -detailed-exitcode -no-color -out=tfplan || export exitcode=$?
           echo "exitcode=$exitcode" >> $GITHUB_OUTPUT
 
           if [ $exitcode -eq 1 ]; then
@@ -87,8 +87,7 @@ jobs:
       - name: Publish Terraform Plan to Task Summary
         env:
           SUMMARY: ${{ steps.tf-plan-string.outputs.summary }}
-        run: |
-          echo "$SUMMARY" >> $GITHUB_STEP_SUMMARY
+        run: echo "$SUMMARY" >> $GITHUB_STEP_SUMMARY
 
       - name: Push Terraform Output to PR
         if: github.ref != 'refs/heads/main'
@@ -112,7 +111,11 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     needs: [terraform-plan]
-    
+
+    defaults:
+      run:
+        working-directory: ./infra/tf-app
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -134,6 +137,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: tfplan
+          path: .
 
       - name: Terraform Apply
         run: terraform apply -auto-approve tfplan
