@@ -2,13 +2,12 @@
 
 ## Project Overview
 
-This project demonstrates Infrastructure as Code (IaC) using Terraform to provision and manage Azure resources for a sample web application. The application is assumed to be containerized and deployed to an Azure Kubernetes Service (AKS) cluster. While the application code itself is not included, the focus is on automating the infrastructure lifecycle and CI/CD workflows using GitHub Actions.
+This project demonstrates Infrastructure as Code (IaC) using Terraform to provision and manage Azure resources such as a virtual network and a subnet. The focus is on automating the infrastructure lifecycle and CI/CD workflows using GitHub Actions.
 
 ## Lab Scenario
 
-- The `app` folder represents the application code (not provided in this lab).
-- All infrastructure is defined in the `infra` folder using Terraform.
-- The Terraform configuration provisions Azure resources and deploys the sample web application to AKS.
+
+- The Terraform configuration provisions Azure resources and deploys a virtual network and a subnet.
 - CI/CD automation is implemented with GitHub Actions workflows for static analysis, integration testing, deployment, and drift detection.
 
 ## Folder Structure
@@ -93,12 +92,12 @@ cst8918-w25-lab12
 
 ## Screenshots
 
-### PR workflows
+### Pull Request workflows
 ![PR workflows](screenshots/PR%20workflows.png)
 
-### PR Terraform plan 1
+### Pull Request Terraform plan 1
 ![PR Terraform plan 1](screenshots/PR%20Terraform%20plan%201.png)
 
-### PR Terraform plan 2
+### Pull Request Terraform plan 2
 ![PR Terraform plan 2](screenshots/PR%20Terraform%20plan%202.png)
 
